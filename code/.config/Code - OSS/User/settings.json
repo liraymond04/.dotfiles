@@ -1,0 +1,19 @@
+{
+    "window.titleBarStyle": "custom",
+    "window.zoomLevel": 1,
+    "terminal.external.linuxExec": "konsole",
+    "editor.fontFamily": "Consolas, 'Courier New', monospace",
+    "omnisharp.useGlobalMono": "always",
+    "explorer.confirmDragAndDrop": false,
+    "explorer.confirmDelete": false,
+    "workbench.colorTheme": "Atom One Dark"
+}
+
+// /usr/lib/code/product.json
+// "extensionsGallery": {
+//     "serviceUrl": "https://marketplace.visualstudio.com/_apis/public/gallery",
+//     "cacheUrl": "https://vscode.blob.core.windows.net/gallery/index",
+//     "itemUrl": "https://marketplace.visualstudio.com/items",
+//     "resourceUrlTemplate": "https://{publisher}.vscode-unpkg.net/{publisher}/{name}/{version}/{path}",
+//     "controlUrl": "https://az764295.vo.msecnd.net/extensions/marketplace.json"
+// },
