@@ -1,6 +1,6 @@
 [Appearance]
 AntiAliasFonts=true
-BoldIntense=false
+BoldIntense=true
 ColorScheme=One-Dark
 Font=Hack Nerd Font,14,-1,5,50,0,0,0,0,0
 
