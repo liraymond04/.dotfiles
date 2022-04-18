@@ -6,7 +6,9 @@
     "omnisharp.useGlobalMono": "always",
     "explorer.confirmDragAndDrop": false,
     "explorer.confirmDelete": false,
-    "workbench.colorTheme": "Atom One Dark"
+    "workbench.colorTheme": "Atom One Dark",
+    "terminal.integrated.defaultProfile.linux": "zsh",
+    "terminal.integrated.fontFamily": "Hack Nerd Font"
 }
 
 // /usr/lib/code/product.json
