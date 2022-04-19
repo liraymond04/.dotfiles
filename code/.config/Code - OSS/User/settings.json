@@ -8,7 +8,8 @@
     "explorer.confirmDelete": false,
     "workbench.colorTheme": "Atom One Dark",
     "terminal.integrated.defaultProfile.linux": "zsh",
-    "terminal.integrated.fontFamily": "Hack Nerd Font"
+    "terminal.integrated.fontFamily": "Hack Nerd Font",
+    "editor.inlineSuggest.enabled": true
 }
 
 // /usr/lib/code/product.json
