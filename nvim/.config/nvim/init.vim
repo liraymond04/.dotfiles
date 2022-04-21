@@ -57,6 +57,9 @@ autocmd FileType nerdtree setlocal relativenumber
 "Mouse scroll options
 nmap<Down> <C-e>
 nmap<Up> <C-y>
+imap<Down> <nop>
+imap<Up> <nop>
+
 
 
 let g:better_escape_shortcut = 'kj'
