@@ -2,7 +2,7 @@ configuration {
   display-drun: "Applications:";
   display-window: "Windows:";
   drun-display-format: "{name}";
-  font: "Hack Nerd Font Medium 28";
+  font: "Hack Nerd Font Medium 22";
   modi: "window,run,drun";
   show-icons: true;
   icon-theme: "Breeze";
