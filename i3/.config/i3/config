@@ -2,20 +2,22 @@
 
 # This config file will use environment variables such as $BROWSER and $TERMINAL.
 
-bar {
-    status_command /usr/bin/bumblebee-status \
-                -m cpu memory brightness pasink battery date time \
-                -p brightness.step=2 date.format="%a, %b %d %Y" time.format="%H:%M:%S" \
-                -t onedark-powerline
-    font pango: Hack 14
-}
+# #---Status bar---# #
+# bar {
+#     status_command /usr/bin/bumblebee-status \
+#                 -m cpu memory brightness pasink battery date time \
+#                 -p brightness.step=2 date.format="%a, %b %d %Y" time.format="%H:%M:%S" \
+#                 -t onedark-powerline
+#     font pango: Hack 14
+# }
+exec --no-startup-id $HOME/.config/polybar/launch.sh
 
-# Autostart
+# #---Autostart---# #
 exec_always --no-startup-id feh --bg-scale /usr/share/wallpapers/MilkyWay/contents/images/5120x2880.png
 exec --no-startup-id picom -b
 
 exec --no-startup-id ibus-daemon -dr
-exec --no-startup-id nm-tray &
+# exec --no-startup-id nm-tray &
 exec_always --no-startup-id autotiling
 
 # Synaptics
@@ -23,7 +25,7 @@ exec --no-startup-id synclient RightButtonAreaLeft=0
 exec --no-startup-id synclient RightButtonAreaTop=0
 exec --no-startup-id synclient HorizTwoFingerScroll=1
 
-#
+
 # #---Basic Definitions---# #
 # smart_gaps on
 smart_borders on
@@ -34,7 +36,6 @@ set $super Mod4
 set $mod Mod1
 set $shutdown sudo -A shutdown -h now
 set $reboot sudo -A reboot
-set $lock i3lock
 # set $suspend sudo systemctl suspend
 # set $hibernate sudo -A systemctl hibernate
 
@@ -43,10 +44,12 @@ focus_follows_mouse no
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
+
 # #---Gaps---# #
 for_window [class="^.*"] border pixel 2
 gaps inner $inner_gaps
 gaps outer $outer_gaps
+
 
 # #---Basic Bindings---# #
 bindsym $mod+Return 		         exec $term
@@ -58,6 +61,21 @@ bindsym $mod+Shift+Return	       exec $term --working-directory  $(xcwd)
 # bindsym $mod+BackSpace
 # bindsym $mod+Shift+BackSpace	   exec --no-startup-id prompt "Reboot computer?" $reboot
 
+
+# #---Create Suspend, Log out, Reboot, Poweroff bindings---# #
+mode "(S)uspend, (L)ogout, (R)eboot, (P)oweroff" {
+    bindsym r exec --no-startup-id systemctl reboot
+    bindsym s exec --no-startup-id systemctl suspend; mode "default"
+    bindsym l exit
+    bindsym p exec --no-startup-id systemctl poweroff
+
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+Shift+e mode "(S)uspend, (L)ogout, (R)eboot, (P)oweroff"
+
+
 # space
 bindsym $mod+space 			            exec --no-startup-id "rofi -modi drun,window -show"
 
@@ -67,14 +85,13 @@ bindsym $mod+q			            [con_id="__focused__" instance="^(?!dropdown_).*$"]
 bindsym $mod+Shift+q		        [con_id="__focused__" instance="^(?!dropdown_).*$"] exec --no-startup-id kill -9 `xdotool getwindowfocus getwindowpid`
 
 # w
-# bindsym $mod+w 			            exec --no-startup-id brave
+bindsym $mod+w 			            exec --no-startup-id $HOME/.config/i3/scripts/toggle_maximize.sh
 
 # c
-# bindsym $mod+c 			            exec --no-startup-id lock
+bindsym $mod+c 			            exec --no-startup-id $HOME/.config/i3/scripts/lock.sh
 # bindsym $mod+Shift+c		        exec --no-startup-id $suspend
 
 # e
-bindsym $mod+e exit
 # bindsym $mod+e 			            exec --no-startup-id code-insiders -n
 # bindsym $mod+Shift+e		        exec $term -e code-insiders
 
@@ -186,6 +203,7 @@ set $ws7 "7"
 set $ws8 "8"
 set $ws9 "9"
 set $ws10 "10"
+set $wsfs "fullscreen"
 
 # Assign Workspaces:
 # assign [class="Brave"] $ws1
@@ -260,7 +278,7 @@ bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl s 2%-
 
 # Window borders
 client.focused          #4c7899 #285577 #ffffff #2e9ef4   #abb2bf
-client.focused_inactive #333333 #5f676a #ffffff #484e50   #5f676a
+client.focused_inactive #333333 #5f676a #ffffff #484e50   #5f676a00
 client.unfocused        #333333 #222222 #888888 #292d2e   #222222
 client.urgent           #2f343a #900000 #ffffff #900000   #900000
 client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
