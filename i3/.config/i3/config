@@ -134,7 +134,7 @@ bindsym $mod+Shift+f 	          floating toggle
 # g
 # bindsym $mod+g		              gaps inner current set $inner_gaps; gaps outer current set $outer_gaps
 # bindsym $mod+Shift+g		        gaps inner current set 0; gaps outer current set 0
-bindsym $mod+g		              exec --no-startup-id galendae
+# bindsym $mod+g		              exec --no-startup-id galendae
 
 # h
 bindsym $mod+h			            focus left
@@ -243,7 +243,8 @@ bindsym $mod+Shift+0	move container to workspace $ws10
 # for_window [class="Gimp"] move workspace $ws5
 for_window [window_role="GtkFileChooserDialog"] resize set 800 600
 for_window [window_role="GtkFileChooserDialog"] move position center
-for_window [class="Galendae"] move position 2150 px 1350 px
+for_window [class="Galendae"] move position 2400 px 84 px
+for_window [class="zoom"] floating enable
 
 
 # #---Function Buttons---# #
