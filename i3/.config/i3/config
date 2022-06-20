@@ -15,6 +15,7 @@ exec --no-startup-id $HOME/.config/polybar/launch.sh
 # #---Autostart---# #
 exec_always --no-startup-id feh --bg-scale /usr/share/wallpapers/MilkyWay/contents/images/5120x2880.png
 exec --no-startup-id picom -b
+exec --no-startup-id /usr/bin/lxpolkit
 
 exec --no-startup-id ibus-daemon -dr
 # exec --no-startup-id nm-tray &
