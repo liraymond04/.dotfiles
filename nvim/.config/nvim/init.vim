@@ -1,4 +1,6 @@
 "Plugins
+"Reload init.vim with :source $MYVIMRC
+"Update plugins with :PlugInstall
 call plug#begin()
 
 Plug 'jdhao/better-escape.vim'
@@ -9,6 +11,7 @@ Plug 'https://github.com/joshdick/onedark.vim.git'
 Plug 'jiangmiao/auto-pairs'
 Plug 'https://github.com/neoclide/coc.nvim', {'branch': 'release'}
 Plug 'tpope/vim-obsession'
+Plug 'preservim/nerdtree'
 
 call plug#end()
 
@@ -35,8 +38,28 @@ set tabstop=4
 set shiftwidth=4
 set expandtab
 
-let g:better_escape_shortcut = 'kj'
 
 "Coc options
+"Add clangd lsp with :CocInstall coc-clangd
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+
+"Nerdtree options
+nnoremap <leader>f :NERDTreeFocus<CR>
+nnoremap <leader>n :NERDTree<CR>
+nnoremap <leader>t :NERDTreeToggle<CR>
+nnoremap <leader>F :NERDTreeFind<CR>
+let NERDTreeShowLineNumbers=1
+autocmd FileType nerdtree setlocal relativenumber
+
+
+"Mouse scroll options
+nmap<Down> <C-e>
+nmap<Up> <C-y>
+imap<Down> <nop>
+imap<Up> <nop>
+
+
+
+let g:better_escape_shortcut = 'kj'
