@@ -9,7 +9,21 @@
     "workbench.colorTheme": "Atom One Dark",
     "terminal.integrated.defaultProfile.linux": "zsh",
     "terminal.integrated.fontFamily": "Hack Nerd Font",
-    "editor.inlineSuggest.enabled": true
+    "editor.inlineSuggest.enabled": true,
+    "hardhat.telemetry": false,
+    "terminal.integrated.profiles.linux": {
+        "bash": {
+            "path": "bash",
+            "icon": "terminal-bash"
+        },
+        "zsh": {
+            "path": "zsh",
+            "args": [
+                "-l",
+                "-i"
+            ]
+        },
+    },
 }
 
 // /usr/lib/code/product.json
