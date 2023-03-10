@@ -22,13 +22,6 @@
     "[cpp]": {
         "editor.defaultFormatter": "xaver.clang-format"
     },
-    "java.configuration.runtimes": [
-        {
-            "name": "JavaSE-17",
-            "path": "/home/liray/Documents/Programming/Java/jdk-17.0.5+8",
-            "default": true
-        }
-    ],
 }
 // /usr/lib/code/product.json
 // "extensionsGallery": {
