@@ -2,7 +2,7 @@
     "window.titleBarStyle": "custom",
     "window.zoomLevel": 1,
     "terminal.external.linuxExec": "konsole",
-    "editor.fontFamily": "Consolas, 'Courier New', monospace",
+    "editor.fontFamily": "Consolas, monospace",
     "omnisharp.useGlobalMono": "always",
     "explorer.confirmDragAndDrop": false,
     "explorer.confirmDelete": false,
@@ -23,7 +23,6 @@
         "editor.defaultFormatter": "xaver.clang-format"
     },
 }
-
 // /usr/lib/code/product.json
 // "extensionsGallery": {
 //     "serviceUrl": "https://marketplace.visualstudio.com/_apis/public/gallery",
