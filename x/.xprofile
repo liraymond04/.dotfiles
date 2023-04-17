@@ -4,6 +4,7 @@ export QT_IM_MODULE=ibus
 export XMODIFIERS=@im=ibus
 
 # GTK
+export GTK_THEME=Breeze:dark
 export GDK_SCALE=1
 export GDK_DPI_SCALE=1
 
@@ -23,3 +24,7 @@ export ZDOTDIR=$HOME/.config/zsh
 
 # CPU cores
 export NUMCPUS=`grep -c '^processor' /proc/cpuinfo`
+
+# Autostart
+flameshot &
+yakuake &

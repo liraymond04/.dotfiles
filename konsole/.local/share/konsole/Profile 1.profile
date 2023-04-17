@@ -9,5 +9,6 @@ UseCustomCursorColor=false
 
 [General]
 Command=/bin/zsh
+Directory=/home/liray
 Name=Profile 1
 Parent=FALLBACK/
