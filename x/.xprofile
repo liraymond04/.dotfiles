@@ -28,3 +28,4 @@ export NUMCPUS=`grep -c '^processor' /proc/cpuinfo`
 # Autostart
 flameshot &
 yakuake &
+ibus-daemon -drx
