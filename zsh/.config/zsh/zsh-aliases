@@ -14,6 +14,9 @@ alias grep='grep --color=auto'
 alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
 
+# Battery info
+alias battery-info='upower -i $(upower -e | grep BAT) | grep --color=never -E "state|to full|to empty|percentage"'
+
 # confirm before overwriting something
 # alias cp="cp -i"
 # alias mv='mv -i'
