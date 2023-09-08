@@ -1,5 +1,5 @@
 #!/bin/sh
-HISTFILE="$XDG_DATA_HOME"/zsh/history
+HISTFILE="$HOME/.local/share"/zsh/history
 HISTSIZE=1000000
 SAVEHIST=1000000
 export PATH="$HOME/.local/bin":$PATH
@@ -9,6 +9,9 @@ export PATH=$HOME/.cargo/bin:$PATH
 export PATH=$HOME/.local/share/go/bin:$PATH
 export GOPATH=$HOME/.local/share/go
 export PATH=$HOME/.miniconda/bin:$PATH
+
+# fixes stdc++ libraries not found in clangd
+# export CPLUS_INCLUDE_PATH=/usr/include/c++/11:/usr/include/x86_64-linux-gnu/c++/11
 # eval "$(fnm env)"
 # eval "$(zoxide init zsh)"
 # eval "`pip completion --zsh`"
