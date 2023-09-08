@@ -14,6 +14,9 @@ alias grep='grep --color=auto'
 alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
 
+# kitty ssh
+[ "$TERM" = "xterm-kitty" ] && alias ssh="kitty +kitten ssh"
+
 # Battery info
 alias battery-info='upower -i $(upower -e | grep BAT) | grep --color=never -E "state|to full|to empty|percentage"'
 
