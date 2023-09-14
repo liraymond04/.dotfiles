@@ -67,7 +67,7 @@
         "critical-threshold": 80,
         // "format-critical": "{temperatureC}°C {icon}",
         "format": "{temperatureC}°C {icon}",
-        "format-icons": ["", "", ""]
+        "format-icons": ["󰉬", "", "󰉪"]
     },
     "backlight": {
         // "device": "acpi_video1",
@@ -82,7 +82,7 @@
             "critical": 15
         },
         "format": "{icon}  {capacity}%",
-        "format-charging": "  {capacity}%",
+        "format-charging": "󰃨  {capacity}%",
         "format-plugged": "  {capacity}%",
         // "format-alt": "{time} {icon}",
         // "format-good": "", // An empty format will hide the module
@@ -92,10 +92,10 @@
     "network": {
         // "interface": "wlp2*", // (Optional) To force the use of this interface
         "format-wifi": "{icon}",
-        "format-ethernet": "{ipaddr}/{cidr} ",
-        "tooltip-format": "{ifname} via {gwaddr} ",
-        "format-linked": "{ifname} (No IP) ",
-        "format-disconnected": "⚠",
+        "format-ethernet": "{ipaddr}/{cidr} 󰊗 ",
+        "tooltip-format": "{ifname} via {gwaddr} 󰊗 ",
+        "format-linked": "{ifname} (No IP) 󰊗 ",
+        "format-disconnected": "󰤮 ",
         "format-alt": "{ifname}: {ipaddr}/{cidr}",
         "format-icons": ["", "", "", "", "", ""]
     },
@@ -103,14 +103,14 @@
         // "scroll-step": 1, // %, can be a float
         "format": "{icon} {volume}%",
         "format-bluetooth": "{icon} {volume}% ",
-        "format-bluetooth-muted": "婢 {volume}% ",
-        "format-muted": "婢 {volume}%",
+        "format-bluetooth-muted": "󰖁 {volume}% ",
+        "format-muted": "󰖁 {volume}%",
         "format-source": "{volume}% ",
         "format-source-muted": "",
         "format-icons": {
             "headphone": "",
-            "hands-free": "",
-            "headset": "",
+            "hands-free": "󰂑",
+            "headset": "󰂑",
             "phone": "",
             "portable": "",
             "car": "",
