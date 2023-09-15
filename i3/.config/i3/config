@@ -191,7 +191,7 @@ bindsym $super+Ctrl+l		          move workspace to output right
 # #---Workspace Bindings---# #
 # bindsym $mod+Tab		            exec --no-startup-id rofi-menu-windows
 bindsym $mod+Tab		          workspace next
-bindsym $mod+Shift+Tab		      workspace previous
+bindsym $mod+Shift+Tab		      workspace prev
 bindsym $mod+apostrophe		      split horizontal ;; exec $term
 bindsym $mod+slash		          split vertical ;; exec $term
 bindsym $mod+Shift+slash	      kill
