@@ -48,7 +48,7 @@ alias archlinx-fix-keys="sudo pacman-key --init && sudo pacman-key --populate ar
 alias list_systemctl="systemctl list-unit-files --state=enabled"
 
 # fix mouse settings (Logitech G Pro Wireless Superlight)
-alias xinput-mouse-fix='xinput set-prop "Logitech USB Receiver" "libinput Accel Profile Enabled" 0 1 && xinput set-prop "Logitech USB Receiver" "libinput Accel Speed" -0.5'
+alias xinput-mouse-fix='xinput set-prop "pointer:Logitech PRO X" "libinput Accel Profile Enabled" 0 1 && xinput set-prop "pointer:Logitech PRO X" "libinput Accel Speed" -0.5'
 
 case "$(uname -s)" in
 

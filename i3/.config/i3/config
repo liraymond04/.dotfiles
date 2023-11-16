@@ -28,8 +28,8 @@ exec_always --no-startup-id autotiling
 # exec --no-startup-id synclient HorizTwoFingerScroll=1
 # exec --no-startup-id synclient AreaRightEdge=1175
 # exec --no-startup-id synclient AreaLeftEdge=222
-exec --no-startup-id xinput set-prop "Logitech USB Receiver" "libinput Accel Speed" -0.5
-exec --no-startup-id xinput set-prop "Logitech USB Receiver" "libinput Accel Profile Enabled" 0 1
+exec --no-startup-id xinput set-prop "pointer:Logitech PRO X" "libinput Accel Speed" -0.5
+exec --no-startup-id xinput set-prop "pointer:Logitech PRO X" "libinput Accel Profile Enabled" 0 1
 
 # #---Basic Definitions---# #
 # smart_gaps on
