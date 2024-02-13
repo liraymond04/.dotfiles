@@ -14,6 +14,7 @@ exec --no-startup-id $HOME/.config/polybar/launch.sh
 
 # #---Autostart---# #
 exec_always --no-startup-id feh --bg-scale /usr/share/wallpapers/MilkyWay/contents/images/5120x2880.png
+exec --no-startup-id nm-applet
 exec --no-startup-id picom -b
 exec --no-startup-id /usr/bin/lxpolkit
 exec --no-startup-id dunst
@@ -160,6 +161,10 @@ bindsym $super+Ctrl+k		          move workspace to output up
 bindsym $super+l			            focus right
 bindsym $super+Shift+l		        move right 30
 bindsym $super+Ctrl+l		          move workspace to output right
+
+# b
+# Requires boomer to be built at the path https://github.com/tsoding/boomer
+bindsym $super+$mod+b             exec --no-startup-id $HOME/sources/boomer/boomer
 
 # bindsym $mod+semicolon 			    exec --no-startup-id skippy-xd
 
