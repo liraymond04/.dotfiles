@@ -76,6 +76,22 @@ bindkey  "^[[3~"  delete-char
 # export FZF_DEFAULT_COMMAND='rg --hidden -l ""'
 compinit
 
+# pnpm
+export PNPM_HOME="/home/liray/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
+
+# bun completions
+[ -s "/home/liray/.bun/_bun" ] && source "/home/liray/.bun/_bun"
+
+# pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+
 # Edit line in vim with ctrl-e:
 # autoload edit-command-line; zle -N edit-command-line
 # bindkey '^e' edit-command-line
