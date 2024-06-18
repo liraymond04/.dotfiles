@@ -11,9 +11,7 @@
     "modules-left": ["hyprland/workspaces", "hyprland/window"],
     "modules-center": [],
     "modules-right": ["idle_inhibitor", "memory", "cpu", "backlight", "pulseaudio", "battery", "clock", "tray"],
-    "wlr/workspaces": {
-      "on-click": "activate",
-      "sort-by-number": true
+    "hyprland/workspaces": {
     },
     "idle_inhibitor": {
         "format": "{icon}",
