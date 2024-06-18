@@ -19,6 +19,7 @@ export GOPATH=$HOME/.local/share/go
 export PATH=$HOME/.miniconda/bin:$PATH
 export BUN_INSTALL="$HOME/.bun" 
 export PATH="$BUN_INSTALL/bin:$PATH"
+export COREPACK_ENABLE_STRICT=0 
 
 # fixes stdc++ libraries not found in clangd
 # export CPLUS_INCLUDE_PATH=/usr/include/c++/11:/usr/include/x86_64-linux-gnu/c++/11
