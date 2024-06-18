@@ -1,5 +1,13 @@
 #!/bin/sh
 HISTFILE="$HOME/.local/share"/zsh/history
+# Check if the directory exists, if not create it
+if [ ! -d "$(dirname "$HISTFILE")" ]; then
+    mkdir -p "$(dirname "$HISTFILE")"
+fi
+# Check if the file exists, if not create it
+if [ ! -f "$HISTFILE" ]; then
+    touch "$HISTFILE"
+fi
 HISTSIZE=1000000
 SAVEHIST=1000000
 export PATH="$HOME/.local/bin":$PATH
