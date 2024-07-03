@@ -1,0 +1,74 @@
+#:schema https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json
+
+version = 2
+final_space = true
+console_title_template = '{{ .Shell }} in {{ .Folder }}'
+
+[[blocks]]
+  type = 'prompt'
+  alignment = 'left'
+
+  [[blocks.segments]]
+    type = 'session'
+    style = 'plain'
+    background = 'transparent'
+    foreground = 'blue'
+    foreground_templates = [ "{{ if .Root}}lightRed{{ end }}" ]
+    properties = { display_host = true }
+    template = "<>\u250c\u2500\u2500(</><white>{{ .UserName }}</><red>@</><white>{{ .HostName }}</><>)</>"
+
+  [[blocks.segments]]
+    type = 'path'
+    style = 'plain'
+    background = 'transparent'
+    foreground = 'cyan'
+    [blocks.segments.properties]
+      style = "folder"
+
+  [[blocks.segments]]
+    type = "git"
+    style = "plain"
+    background = 'transparent'
+    foreground = "white"
+    # background_templates = [
+    #   "{{ if or (.Working.Changed) (.Staging.Changed) }}#FFEB3B{{ end }}",
+    #   "{{ if and (gt .Ahead 0) (gt .Behind 0) }}#FFCC80{{ end }}",
+    #   "{{ if gt .Ahead 0 }}#B388FF{{ end }}",
+    #   "{{ if gt .Behind 0 }}#B388FB{{ end }}"
+    # ]
+    template = "<magenta>{{ .HEAD }}</>{{if .BranchStatus }} <>{{ .BranchStatus }}</>{{ end }}{{ if .Working.Changed }} <red>{{ .Working.String }}</>{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Staging.Changed }} <green>{{ .Staging.String }}</>{{ end }}{{ if gt .StashCount 0 }}  {{ .StashCount }}{{ end }}"
+
+    [blocks.segments.properties]
+      branch_icon = "<yellow>\ue725</> "
+      fetch_status = true
+      fetch_upstream_icon = false
+
+[[blocks]]
+  type = 'rprompt'
+  overflow = 'hidden'
+
+  [[blocks.segments]]
+    type = 'executiontime'
+    style = 'plain'
+    background = 'transparent'
+    foreground = 'yellow'
+    template = '{{ div .Ms 1000 }}s'
+
+    [blocks.segments.properties]
+      threshold = 5000
+
+[[blocks]]
+  type = 'prompt'
+  alignment = 'left'
+  newline = true
+
+  [[blocks.segments]]
+    type = 'text'
+    style = 'plain'
+    background = 'transparent'
+    foreground_templates = [
+      '{{if gt .Code 0}}red{{end}}',
+      '{{if eq .Code 0}}green{{end}}',
+    ]
+    template = "<blue>\u2514\u2500</>$"
+
