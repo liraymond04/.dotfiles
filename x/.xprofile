@@ -27,6 +27,10 @@ export XDG_DATA_HOME=$HOME/.local/share
 # CPU cores
 export NUMCPUS=`grep -c '^processor' /proc/cpuinfo`
 
+# mimetypes
+export XDG_MENU_PREFIX=plasma-
+kbuildsycoca6
+
 # Autostart
 flameshot &
 yakuake &
