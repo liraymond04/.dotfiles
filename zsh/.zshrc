@@ -88,6 +88,8 @@ alias battery-info='upower -i $(upower -e | grep BAT) | grep --color=never -E "s
 alias archlinux-fix-keys="sudo pacman-key --init && sudo pacman-key --populate archlinux && sudo pacman-key --refresh-keys"
 # systemd
 alias list_systemctl="systemctl list-unit-files --state=enabled"
+# fix mouse settings (Logitech G Pro Wireless Superlight)
+alias xinput-mouse-fix='xinput set-prop "Logitech USB Receiver" "libinput Accel Profile Enabled" 0 1 && xinput set-prop "Logitech USB Receiver" "libinput Accel Speed" -0.5'
 
 # Exports
 export PATH="$HOME/.local/bin":$PATH
@@ -120,6 +122,7 @@ eval "$(pyenv init -)"
 # nvm
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # Shell integrations
 eval "$(fzf --zsh)"
