@@ -22,6 +22,7 @@
     "[cpp]": {
         "editor.defaultFormatter": "xaver.clang-format"
     },
+    "diffEditor.hideUnchangedRegions.enabled": true,
 }
 
 // /usr/lib/code/product.json
