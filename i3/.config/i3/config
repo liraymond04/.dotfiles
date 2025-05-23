@@ -18,9 +18,13 @@ exec --no-startup-id picom -b
 exec --no-startup-id /usr/bin/lxpolkit
 exec --no-startup-id dunst
 
-exec --no-startup-id ibus-daemon -dr
-# exec --no-startup-id nm-tray &
+# exec --no-startup-id ibus-daemon -dr
+# chinese ime
+exec --no-startup-id fcitx5 -d
+exec --no-startup-id nm-applet
 exec_always --no-startup-id autotiling
+
+exec --no-startup-id XDG_MENU_PREFIX=plasma- kbuildsycoca6
 
 # Synaptics
 exec --no-startup-id synclient RightButtonAreaLeft=0
@@ -29,13 +33,20 @@ exec --no-startup-id synclient HorizTwoFingerScroll=1
 exec --no-startup-id synclient AreaRightEdge=1175
 exec --no-startup-id synclient AreaLeftEdge=222
 
+# xinput
+exec --no-startup-id xinput set-prop "PIXA3854:00 093A:0274 Touchpad" "libinput Natural Scrolling Enabled" 1
+exec --no-startup-id xinput set-prop "PIXA3854:00 093A:0274 Touchpad" "libinput Scrolling Pixel Distance" 35
+exec --no-startup-id xinput set-prop "PIXA3854:00 093A:0274 Touchpad" "libinput Click Method Enabled" 0, 1
+exec --no-startup-id xinput set-prop "PIXA3854:00 093A:0274 Touchpad" "libinput Accel Profile Enabled" 0, 1
+# exec --no-startup-id xinput set-prop "pointer:PIXA3854:00 093A:0274 Touchpad" "Coordinate Transformation Matrix" 1, 0, 0, 0, 1, 0, 0, 0, 1.0
+exec --no-startup-id xinput set-prop "PIXA3854:00 093A:0274 Touchpad" "libinput Accel Speed" 0.7
 
 # #---Basic Definitions---# #
 # smart_gaps on
 smart_borders on
 set $inner_gaps 15
 set $outer_gaps 0
-set $term --no-startup-id alacritty
+set $term --no-startup-id kitty
 set $super Mod4
 set $mod Mod1
 set $shutdown sudo -A shutdown -h now
@@ -105,10 +116,10 @@ bindsym $mod+r 			            exec $term -e ranger
 
 # t
 # bindsym $mod+t 			            exec $term -e ytop
-bindsym $mod+Shift+t            focus mode_toggle
+bindsym $mod+a            focus mode_toggle
 
 # y
-bindsym $mod+y			            exec --no-startup-id flameshot gui -p ~/Pictures/screenshots
+bindsym $mod+y			            exec --no-startup-id flameshot gui
 bindsym $mod+Shift+y		        exec --no-startup-id flameshot full -p ~/Pictures/screenshots
 
 # u
@@ -141,24 +152,24 @@ bindsym $mod+Shift+f 	          floating toggle
 # bindsym $mod+g		              exec --no-startup-id galendae
 
 # h
-bindsym $super+h			            focus left
-bindsym $super+Shift+h		        move left 30
-bindsym $super+Ctrl+h		          move workspace to output left
+bindsym $mod+h			            focus left
+bindsym $mod+Shift+h		        move left 30
+bindsym $mod+Ctrl+h		          move workspace to output left
 
 # j
-bindsym $super+j			            focus down
-bindsym $super+Shift+j		        move down 30
-bindsym $super+Ctrl+j		          move workspace to output down
+bindsym $mod+j			            focus down
+bindsym $mod+Shift+j		        move down 30
+bindsym $mod+Ctrl+j		          move workspace to output down
 
 # k
-bindsym $super+k			            focus up
-bindsym $super+Shift+k		        move up 30
-bindsym $super+Ctrl+k		          move workspace to output up
+bindsym $mod+k			            focus up
+bindsym $mod+Shift+k		        move up 30
+bindsym $mod+Ctrl+k		          move workspace to output up
 
 # l
-bindsym $super+l			            focus right
-bindsym $super+Shift+l		        move right 30
-bindsym $super+Ctrl+l		          move workspace to output right
+bindsym $mod+l			            focus right
+bindsym $mod+Shift+l		        move right 30
+bindsym $mod+Ctrl+l		          move workspace to output right
 
 # bindsym $mod+semicolon 			    exec --no-startup-id skippy-xd
 
@@ -247,27 +258,36 @@ bindsym $mod+Shift+0	move container to workspace $ws10
 # for_window [class="Gimp"] move workspace $ws5
 for_window [window_role="GtkFileChooserDialog"] resize set 800 600
 for_window [window_role="GtkFileChooserDialog"] move position center
-for_window [class="Galendae"] move position 2400 px 84 px
+for_window [class="Galendae"] move position 1950 px 84 px
 for_window [class="zoom"] floating enable
 
 
 # #---Function Buttons---# #
-# bindsym $mod+F1		        restart
-# bindsym $mod+F2		        exec --no-startup-id screenkey -s small --scr 1 -p fixed -g 600x100+2573+1330 --opacity .9 --font-color white
-# bindsym $mod+F3	          exec --no-startup-id killall screenkey
-bindsym $mod+F12	        scratchpad show
+bindsym $mod+F1		        restart
+bindsym $mod+F2		        reload
+bindsym $mod+F3		        exec --no-startup-id screenkey
+bindsym $mod+F4	          exec --no-startup-id killall screenkey
+bindsym $mod+F5		        scratchpad show
+
+# scratchpad scripts
+# needs (pacman -S --needed xdotool jq xorg-xdpyinfo)
+# Automatically move scratchpad terminal to scratchpad on launch
+for_window [class="TermScratch"] move to scratchpad
+for_window [class="MusicScratch"] move to scratchpad
+bindsym $mod+F12 exec --no-startup-id $HOME/.config/i3/scripts/scratchpad.sh term
+bindsym $mod+F11 exec --no-startup-id $HOME/.config/i3/scripts/scratchpad.sh music
 
 # #---Arrow Keys---# #
-bindsym $mod+Left		      focus left
+# bindsym $mod+Left		      focus left
 bindsym $mod+Shift+Left   resize shrink width 5 px or 5 ppt
 bindsym $mod+Ctrl+Left		move workspace to output right
-bindsym $mod+Down		      focus down
+# bindsym $mod+Down		      focus down
 bindsym $mod+Shift+Down   resize shrink height 5 px or 5 ppt
 bindsym $mod+Ctrl+Down		move workspace to output up
-bindsym $mod+Up			      focus up
+# bindsym $mod+Up			      focus up
 bindsym $mod+Shift+Up     resize grow height 5 px or 5 ppt
 bindsym $mod+Ctrl+Up		  move workspace to output down
-bindsym $mod+Right 		    focus right
+# bindsym $mod+Right 		    focus right
 bindsym $mod+Shift+Right  resize grow width 5 px or 5 ppt
 bindsym $mod+Ctrl+Right		move workspace to output left
 
