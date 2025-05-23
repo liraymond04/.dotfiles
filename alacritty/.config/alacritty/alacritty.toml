@@ -1,0 +1,41 @@
+[general]
+import = ["~/.config/alacritty/themes/kitty_colors.toml"]
+
+[colors]
+draw_bold_text_with_bright_colors = true
+
+[colors.primary]
+background = "#1e222a"
+# bright_background = "#101216"
+bright_foreground = "#fcfcfc"
+# dim_background = "#2c323e"
+dim_foreground = "#eff0f1"
+foreground = "#fcfcfc"
+
+[cursor]
+thickness = 0.15
+
+[cursor.style]
+blinking = "Off"
+shape = "Block"
+
+[env]
+TERM = "xterm-256color"
+
+[font]
+size = 10.0
+
+[font.normal]
+family = "Hack Nerd Font"
+style = "Regular"
+
+[terminal.shell]
+args = ["--login"]
+program = "/bin/zsh"
+
+[window]
+decorations = "full"
+opacity = 0.90
+startup_mode = "Windowed"
+
+[terminal]
