@@ -47,27 +47,35 @@ apply_geometry() {
         return
     fi
 
+    # Get geometry of the window
     get_window_geometry "$win_id"
 
     [[ -n "$WIDTH" ]] && WIN_WIDTH="$WIDTH"
     [[ -n "$HEIGHT" ]] && WIN_HEIGHT="$HEIGHT"
+
+    # Get primary monitor offset
+    local primary_info primary_geometry monitor_x monitor_y
+    primary_info=$(xrandr | grep " connected primary")
+    primary_geometry=$(echo "$primary_info" | grep -oP '\d+x\d+\+\d+\+\d+')
+    monitor_x=$(echo "$primary_geometry" | cut -d'+' -f2)
+    monitor_y=$(echo "$primary_geometry" | cut -d'+' -f3)
 
     # Calculate aligned X
     local final_x=""
     if [[ -n "$X" && -n "$X_ALIGN" ]]; then
         case "$X_ALIGN" in
             left)
-                final_x="$X"
+                final_x=$((monitor_x + X))
                 ;;
             right)
-                final_x=$(( SCREEN_W - WIN_WIDTH - X ))
+                final_x=$((monitor_x + SCREEN_W - WIN_WIDTH - X))
                 ;;
             center)
-                final_x=$(( (SCREEN_W / 2) - (WIN_WIDTH / 2) + X ))
+                final_x=$((monitor_x + (SCREEN_W / 2) - (WIN_WIDTH / 2) + X))
                 ;;
         esac
     elif [[ -n "$X" ]]; then
-        final_x="$X"
+        final_x=$((monitor_x + X))
     fi
 
     # Calculate aligned Y
@@ -75,21 +83,18 @@ apply_geometry() {
     if [[ -n "$Y" && -n "$Y_ALIGN" ]]; then
         case "$Y_ALIGN" in
             top)
-                final_y="$Y"
+                final_y=$((monitor_y + Y))
                 ;;
             bottom)
-                final_y=$(( SCREEN_H - WIN_HEIGHT - Y ))
+                final_y=$((monitor_y + SCREEN_H - WIN_HEIGHT - Y))
                 ;;
             center)
-                final_y=$(( (SCREEN_H / 2) - (WIN_HEIGHT / 2) + Y ))
+                final_y=$((monitor_y + (SCREEN_H / 2) - (WIN_HEIGHT / 2) + Y))
                 ;;
         esac
     elif [[ -n "$Y" ]]; then
-        echo "bruh $final_x $final_y"
-
-        final_y="$Y"
+        final_y=$((monitor_y + Y))
     fi
-
 
     # Move window only if both X and Y are determined
     if [[ -n "$final_x" && -n "$final_y" ]]; then
@@ -156,6 +161,10 @@ prepend_terminal_args() {
             echo "$terminal_cmd $terminal_args$remainder"
             ;;
         *)
+            # TODO
+            # fix cases for GUI applications
+            # right now, it can't find windows with the class
+            # so it might need to use window titles instead
             # Not a known terminal — leave unchanged
             echo "$raw_command"
             ;;
@@ -182,7 +191,8 @@ get_config_value() {
     }' "$CONFIG"
 }
 
-read SCREEN_W SCREEN_H < <(xdpyinfo | awk '/dimensions:/ { split($2, d, "x"); print d[1], d[2] }')
+SCREEN_W=$(xrandr --current | grep '*' | head -n 1 | cut -d 'x' -f1)
+SCREEN_H=$(xrandr --current | grep '*' | head -n 1 | cut -d 'x' -f2)
 
 CLASS=$(get_config_value "$SCRATCHPAD_NAME" "class")
 TITLE=$(get_config_value "$SCRATCHPAD_NAME" "title")

@@ -266,8 +266,8 @@ for_window [class="zoom"] floating enable
 bindsym $mod+F1		        restart
 bindsym $mod+F2		        reload
 bindsym $mod+F3		        exec --no-startup-id screenkey
-bindsym $mod+F4	          exec --no-startup-id killall screenkey
-bindsym $mod+F5		        scratchpad show
+bindsym $mod+F4			exec --no-startup-id killall screenkey
+bindsym $mod+F12	        scratchpad show
 
 # scratchpad scripts
 # needs (pacman -S --needed xdotool jq xorg-xdpyinfo)
@@ -276,10 +276,10 @@ for_window [class="TermScratch"] move to scratchpad
 for_window [class="MusicScratch"] move to scratchpad
 for_window [class="BtopScratch"] move to scratchpad
 for_window [class="HtopScratch"] move to scratchpad
-bindsym $mod+F12 exec --no-startup-id $HOME/.config/i3/scripts/scratchpad.sh term
-bindsym $mod+F11 exec --no-startup-id $HOME/.config/i3/scripts/scratchpad.sh music
-bindsym $mod+F10 exec --no-startup-id $HOME/.config/i3/scripts/scratchpad.sh btop
-bindsym $mod+F9 exec --no-startup-id $HOME/.config/i3/scripts/scratchpad.sh htop
+bindsym $mod+F11 exec --no-startup-id $HOME/.config/i3/scripts/scratchpad.sh term
+bindsym $mod+F10 exec --no-startup-id $HOME/.config/i3/scripts/scratchpad.sh music
+bindsym $mod+F9 exec --no-startup-id $HOME/.config/i3/scripts/scratchpad.sh btop
+bindsym $mod+F8 exec --no-startup-id $HOME/.config/i3/scripts/scratchpad.sh htop
 
 # #---Arrow Keys---# #
 # bindsym $mod+Left		      focus left
