@@ -53,6 +53,7 @@ set $shutdown sudo -A shutdown -h now
 set $reboot sudo -A reboot
 # set $suspend sudo systemctl suspend
 # set $hibernate sudo -A systemctl hibernate
+set $scripts_dir $HOME/.config/i3/scripts
 
 focus_follows_mouse no
 
@@ -100,10 +101,10 @@ bindsym $mod+q			            [con_id="__focused__" instance="^(?!dropdown_).*$"]
 bindsym $mod+Shift+q		        [con_id="__focused__" instance="^(?!dropdown_).*$"] exec --no-startup-id kill -9 `xdotool getwindowfocus getwindowpid`
 
 # w
-bindsym $mod+w 			            exec --no-startup-id $HOME/.config/i3/scripts/toggle_maximize.sh
+bindsym $mod+w 			            exec --no-startup-id $scripts_dir/toggle_maximize.sh
 
 # c
-bindsym $mod+c 			            exec --no-startup-id $HOME/.config/i3/scripts/lock.sh
+bindsym $mod+c 			            exec --no-startup-id $scripts_dir/lock.sh
 # bindsym $mod+Shift+c		        exec --no-startup-id $suspend
 
 # e
@@ -267,6 +268,8 @@ bindsym $mod+F1		        restart
 bindsym $mod+F2		        reload
 bindsym $mod+F3		        exec --no-startup-id screenkey
 bindsym $mod+F4			exec --no-startup-id killall screenkey
+bindsym $mod+F5			exec --no-startup-id $scripts_dir/single_display.sh
+bindsym $mod+F6			exec --no-startup-id $scripts_dir/dual_display.sh
 bindsym $mod+F12	        scratchpad show
 
 # scratchpad scripts
@@ -276,10 +279,10 @@ for_window [class="TermScratch"] move to scratchpad
 for_window [class="MusicScratch"] move to scratchpad
 for_window [class="BtopScratch"] move to scratchpad
 for_window [class="HtopScratch"] move to scratchpad
-bindsym $mod+F11 exec --no-startup-id $HOME/.config/i3/scripts/scratchpad.sh term
-bindsym $mod+F10 exec --no-startup-id $HOME/.config/i3/scripts/scratchpad.sh music
-bindsym $mod+F9 exec --no-startup-id $HOME/.config/i3/scripts/scratchpad.sh btop
-bindsym $mod+F8 exec --no-startup-id $HOME/.config/i3/scripts/scratchpad.sh htop
+bindsym $mod+F11 exec --no-startup-id $scripts_dir/scratchpad.sh term
+bindsym $mod+F10 exec --no-startup-id $scripts_dir/scratchpad.sh music
+bindsym $mod+F9 exec --no-startup-id $scripts_dir/scratchpad.sh btop
+bindsym $mod+F8 exec --no-startup-id $scripts_dir/scratchpad.sh htop
 
 # #---Arrow Keys---# #
 # bindsym $mod+Left		      focus left
