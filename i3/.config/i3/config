@@ -13,10 +13,13 @@
 exec --no-startup-id $HOME/.config/polybar/launch.sh
 
 # #---Autostart---# #
+# default display config
+exec --no-startup-id $scripts_dir/dual_display.sh
 exec_always --no-startup-id feh --bg-scale /usr/share/wallpapers/MilkyWay/contents/images/5120x2880.png
 exec --no-startup-id picom -b
 exec --no-startup-id /usr/bin/lxpolkit
 exec --no-startup-id dunst
+exec --no-startup-id parcellite
 
 # exec --no-startup-id ibus-daemon -dr
 # chinese ime
@@ -32,6 +35,7 @@ exec --no-startup-id synclient RightButtonAreaTop=0
 exec --no-startup-id synclient HorizTwoFingerScroll=1
 exec --no-startup-id synclient AreaRightEdge=1175
 exec --no-startup-id synclient AreaLeftEdge=222
+
 
 # xinput
 exec --no-startup-id xinput set-prop "PIXA3854:00 093A:0274 Touchpad" "libinput Natural Scrolling Enabled" 1

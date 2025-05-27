@@ -41,7 +41,7 @@ export NUMCPUS=`grep -c '^processor' /proc/cpuinfo`
 CONFIG_FILE="$HOME/.config/fcitx5/conf/classicui.conf"
 
 # Desired font settings
-I3_FONT="Sans Serif 24"
+I3_FONT="Sans Serif 12"
 DEFAULT_FONT="Sans Serif 12"
 
 # Check if running under i3

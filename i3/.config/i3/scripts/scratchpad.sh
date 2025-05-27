@@ -191,8 +191,9 @@ get_config_value() {
     }' "$CONFIG"
 }
 
-SCREEN_W=$(xrandr --current | grep '*' | head -n 1 | cut -d 'x' -f1)
-SCREEN_H=$(xrandr --current | grep '*' | head -n 1 | cut -d 'x' -f2)
+primary_geometry=$(xrandr | grep " connected primary" | grep -oP '\d+x\d+\+\d+\+\d+')
+SCREEN_W=$(echo "$primary_geometry" | cut -d'x' -f1)
+SCREEN_H=$(echo "$primary_geometry" | cut -d'x' -f2 | cut -d'+' -f1)
 
 CLASS=$(get_config_value "$SCRATCHPAD_NAME" "class")
 TITLE=$(get_config_value "$SCRATCHPAD_NAME" "title")
