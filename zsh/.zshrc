@@ -41,6 +41,11 @@ setopt nomatch
 setopt menucomplete
 setopt interactive_comments
 
+WORDCHARS='*?_-.[]~=&;!#$%^(){}<>/ '$'\n'
+autoload -Uz select-word-style
+select-word-style normal
+zstyle ':zle:*' word-style unspecified
+
 # Keybindings
 bindkey -e
 bindkey '^p' history-search-backward
@@ -53,6 +58,10 @@ bindkey "^[[1;5D" backward-word
 bindkey  "^[[H"   beginning-of-line
 bindkey  "^[[F"   end-of-line
 bindkey  "^[[3~"  delete-char
+
+bindkey "^[[102;9u" forward-word
+bindkey "^[[98;9u" backward-word
+bindkey "^[[100;9u" kill-word
 
 # History
 HISTSIZE=1000000
@@ -124,3 +133,14 @@ export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || pr
 # Shell integrations
 eval "$(fzf --zsh)"
 eval "$(zoxide init --cmd cd zsh)"
+
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
+
+# BEGIN opam configuration
+# This is useful if you're using opam as it adds:
+#   - the correct directories to the PATH
+#   - auto-completion for the opam binary
+# This section can be safely removed at any time if needed.
+[[ ! -r '/home/liray/.opam/opam-init/init.zsh' ]] || source '/home/liray/.opam/opam-init/init.zsh' > /dev/null 2> /dev/null
+# END opam configuration
