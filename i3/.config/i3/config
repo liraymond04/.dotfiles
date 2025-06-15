@@ -176,6 +176,10 @@ bindsym $mod+l			            focus right
 bindsym $mod+Shift+l		        move right 30
 bindsym $mod+Ctrl+l		          move workspace to output right
 
+# b
+# Requires boomer to be built at the path https://github.com/tsoding/boomer
+bindsym $super+$mod+b             exec --no-startup-id $HOME/sources/boomer/boomer
+
 # bindsym $mod+semicolon 			    exec --no-startup-id skippy-xd
 
 # z
