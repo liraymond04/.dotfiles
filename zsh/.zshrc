@@ -97,6 +97,7 @@ alias battery-info='upower -i $(upower -e | grep BAT) | grep --color=never -E "s
 alias archlinux-fix-keys="sudo pacman-key --init && sudo pacman-key --populate archlinux && sudo pacman-key --refresh-keys"
 # systemd
 alias list_systemctl="systemctl list-unit-files --state=enabled"
+alias xinput-config="~/.dotfiles/i3/.config/i3/scripts/xinput-config.sh"
 
 # Exports
 export PATH="$HOME/.local/bin":$PATH
@@ -136,6 +137,11 @@ eval "$(zoxide init --cmd cd zsh)"
 
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
+# dotnet tools
+export PATH="$PATH:$HOME/.dotnet/tools"
+
+# flutter
+export PATH="$HOME/develop/flutter/bin:$PATH"
 
 # BEGIN opam configuration
 # This is useful if you're using opam as it adds:

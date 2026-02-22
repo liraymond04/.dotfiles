@@ -36,15 +36,6 @@ exec --no-startup-id synclient HorizTwoFingerScroll=1
 exec --no-startup-id synclient AreaRightEdge=1175
 exec --no-startup-id synclient AreaLeftEdge=222
 
-
-# xinput
-exec --no-startup-id xinput set-prop "PIXA3854:00 093A:0274 Touchpad" "libinput Natural Scrolling Enabled" 1
-exec --no-startup-id xinput set-prop "PIXA3854:00 093A:0274 Touchpad" "libinput Scrolling Pixel Distance" 35
-exec --no-startup-id xinput set-prop "PIXA3854:00 093A:0274 Touchpad" "libinput Click Method Enabled" 0, 1
-exec --no-startup-id xinput set-prop "PIXA3854:00 093A:0274 Touchpad" "libinput Accel Profile Enabled" 0, 1
-# exec --no-startup-id xinput set-prop "pointer:PIXA3854:00 093A:0274 Touchpad" "Coordinate Transformation Matrix" 1, 0, 0, 0, 1, 0, 0, 0, 1.0
-exec --no-startup-id xinput set-prop "PIXA3854:00 093A:0274 Touchpad" "libinput Accel Speed" 0.7
-
 # #---Basic Definitions---# #
 # smart_gaps on
 smart_borders on
@@ -55,7 +46,7 @@ set $super Mod4
 set $mod Mod1
 set $shutdown sudo -A shutdown -h now
 set $reboot sudo -A reboot
-# set $suspend sudo systemctl suspend
+set $suspend sudo systemctl suspend
 # set $hibernate sudo -A systemctl hibernate
 set $scripts_dir $HOME/.config/i3/scripts
 
@@ -64,6 +55,8 @@ focus_follows_mouse no
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
+# xinput
+exec --no-startup-id $scripts_dir/xinput-config.sh
 
 # #---Gaps---# #
 for_window [class="^.*"] border pixel 2
@@ -109,7 +102,7 @@ bindsym $mod+w 			            exec --no-startup-id $scripts_dir/toggle_maximize.
 
 # c
 bindsym $mod+c 			            exec --no-startup-id $scripts_dir/lock.sh
-# bindsym $mod+Shift+c		        exec --no-startup-id $suspend
+bindsym $mod+Shift+c		        exec --no-startup-id $suspend
 
 # e
 # bindsym $mod+e 			            exec --no-startup-id code-insiders -n
@@ -278,6 +271,7 @@ bindsym $mod+F3		        exec --no-startup-id screenkey
 bindsym $mod+F4			exec --no-startup-id killall screenkey
 bindsym $mod+F5			exec --no-startup-id $scripts_dir/single_display.sh
 bindsym $mod+F6			exec --no-startup-id $scripts_dir/dual_display.sh
+bindsym $mod+F7			exec --no-startup-id $scripts_dir/dual_display_LG.sh
 bindsym $mod+F12	        scratchpad show
 
 # scratchpad scripts
