@@ -1,0 +1,5 @@
+set $term kitty
+set $browser MOZ_ENABLE_WAYLAND=1 firefox
+set $filemanager dolphin
+set $editor kate
+set $exit $launcher
