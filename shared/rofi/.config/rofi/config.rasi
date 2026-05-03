@@ -2,6 +2,7 @@ configuration {
   display-drun: "Applications:";
   display-window: "Windows:";
   drun-display-format: "{name}";
+  dpi: 96;
   font: "Hack Nerd Font Medium 18";
   modi: "window,run,drun";
   show-icons: true;

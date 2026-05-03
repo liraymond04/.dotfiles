@@ -1,0 +1,57 @@
+# vim: filetype=i3config
+# Desktop-specific i3 configuration
+# This is included by the shared i3 config
+
+# #---Status bar---# #
+exec --no-startup-id $HOME/.config/polybar/launch.sh
+
+# #---Autostart---# #
+exec_always --no-startup-id feh --bg-scale /usr/share/wallpapers/MilkyWay/contents/images/5120x2880.png
+exec --no-startup-id nm-applet
+exec --no-startup-id picom -b
+exec --no-startup-id /usr/bin/lxpolkit
+exec --no-startup-id dunst
+
+exec --no-startup-id ibus-daemon -dr
+exec_always --no-startup-id autotiling
+
+# Logitech mouse configuration (desktop-specific, no touchpad)
+exec --no-startup-id xinput set-prop "Logitech USB Receiver" "libinput Accel Speed" -0.5
+exec --no-startup-id xinput set-prop "Logitech USB Receiver" "libinput Accel Profile Enabled" 0 1
+
+# #---Desktop Navigation (use $super+hjkl)---# #
+bindsym $super+h			            focus left
+bindsym $super+Shift+h		        move left 30
+bindsym $super+Ctrl+h		          move workspace to output left
+
+bindsym $super+j			            focus down
+bindsym $super+Shift+j		        move down 30
+bindsym $super+Ctrl+j		          move workspace to output down
+
+bindsym $super+k			            focus up
+bindsym $super+Shift+k		        move up 30
+bindsym $super+Ctrl+k		          move workspace to output up
+
+bindsym $super+l			            focus right
+bindsym $super+Shift+l		        move right 30
+bindsym $super+Ctrl+l		          move workspace to output right
+
+# #---Focus mode toggle---# #
+bindsym $mod+Shift+t            focus mode_toggle
+
+# #---Boomer magnifier (desktop-specific)---# #
+# Requires boomer to be built at the path https://github.com/tsoding/boomer
+bindsym $super+$mod+b             exec --no-startup-id $HOME/sources/boomer/boomer
+
+# #---Arrow Keys---# #
+bindsym $mod+Shift+Left   resize shrink width 5 px or 5 ppt
+bindsym $mod+Shift+Down   resize shrink height 5 px or 5 ppt
+bindsym $mod+Shift+Up     resize grow height 5 px or 5 ppt
+bindsym $mod+Shift+Right  resize grow width 5 px or 5 ppt
+
+# #---Brightness controls (if available on desktop)---# #
+# bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl s +2%
+# bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl s 2%-
+
+# Different Galendae positioning for desktop
+for_window [class="Galendae"] move position 2245 px 50 px

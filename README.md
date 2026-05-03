@@ -15,10 +15,6 @@ dotfiles/
 │   ├── tmux/                 # Terminal multiplexer
 │   ├── zsh/                  # Shell configuration
 │   └── code/                 # VS Code settings
-├── terminal-emulators/        # Choose one terminal emulator
-│   ├── kitty/                # Fast GPU-based terminal (recommended)
-│   ├── alacritty/            # Rust-based terminal
-│   └── konsole/              # KDE terminal
 ├── laptop/                    # Laptop-specific configuration (stow this on laptop)
 │   ├── i3/                   # Original laptop i3 config
 │   ├── hyprland/             # Laptop Hyprland config
@@ -28,8 +24,8 @@ dotfiles/
 │   ├── i3/                   # Desktop X11 window manager (polybar, rofi)
 │   ├── hyprland/             # Desktop Wayland setup (waybar, tofi)
 │   └── x/                    # X11-specific DPI and environment
-├── wayland-base/              # Shared Wayland tools
-│   └── fcitx5/               # Chinese IME environment variables
+├── shared/                    # Common configs across all machines
+│   ├── fcitx5/               # Chinese IME environment variables
 └── stow-wrapper.sh           # Automation script for stow commands
 ```
 
@@ -40,14 +36,14 @@ dotfiles/
 You need `git`, GNU `stow`, and your chosen window manager installed:
 
 ```bash
-# For Debian/Ubuntu
-sudo apt install git stow
+# For Arhc Linux
+sudo pacman -S git stow
 
 # For laptop (Wayland + Sway)
-sudo apt install sway swaync waybar wl-clipboard
+sudo pacman -S sway swaync waybar wl-clipboard
 
 # For desktop (X11 + i3)
-sudo apt install i3 polybar rofi picom dunst
+sudo pacman -S i3-wm polybar rofi picom dunst
 ```
 
 ### Installation
@@ -90,27 +86,8 @@ Force a specific configuration:
 # Setup as desktop
 ./stow-wrapper.sh desktop
 
-# Choose different terminal
-STOW_TERMINAL=alacritty ./stow-wrapper.sh
-
 # Dry-run to preview changes
 ./stow-wrapper.sh --dry-run
-```
-
-#### Option 3: Direct stow Commands
-
-If you prefer manual control:
-
-```bash
-# For laptop
-stow shared
-stow laptop
-stow terminal-emulators/kitty
-
-# For desktop
-stow shared
-stow desktop
-stow terminal-emulators/kitty
 ```
 
 ## Machine Configuration Guide
@@ -185,23 +162,6 @@ i3
 | `shared/tmux` | Terminal multiplexer with plugins |
 | `shared/zsh` | Zsh with zinit, oh-my-posh, aliases |
 | `shared/code` | VS Code settings and extensions |
-
-### Terminal Emulators (Choose One)
-
-By default, `stow-wrapper.sh` uses `kitty`. To switch:
-
-```bash
-# Remove kitty symlinks
-stow -D terminal-emulators/kitty
-
-# Install alacritty or konsole
-stow terminal-emulators/alacritty
-# or
-stow terminal-emulators/konsole
-
-# Or use the wrapper with STOW_TERMINAL
-STOW_TERMINAL=alacritty ./stow-wrapper.sh
-```
 
 ### Platform-Specific Environment (laptop/x and desktop/x)
 

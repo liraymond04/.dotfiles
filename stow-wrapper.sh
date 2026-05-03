@@ -55,6 +55,20 @@ run_stow() {
   "$STOW_BIN" "${args[@]}" || { print_error "Failed: $pkg from $stow_dir"; return 1; }
 }
 
+stow_packages_in_root() {
+  local root="$1"
+  local pkg_path
+  local pkg
+
+  shopt -s nullglob
+  for pkg_path in "$SCRIPT_DIR/$root"/*; do
+    [[ -d "$pkg_path" ]] || continue
+    pkg="${pkg_path##*/}"
+    print_info "Stowing: $root/$pkg"
+    run_stow "$pkg" "$SCRIPT_DIR/$root" || failed=true
+  done
+}
+
 apply_config() {
   print_info "Applying: ${BLUE}$MACHINE_TYPE${NC}"
   echo ""
@@ -62,36 +76,16 @@ apply_config() {
   local failed=false
   
   # Stow shared packages
-  for pkg in code nvim tmux zsh; do
-    [[ -d "$SCRIPT_DIR/shared/$pkg" ]] || continue
-    print_info "Stowing: shared/$pkg"
-    run_stow "$pkg" "$SCRIPT_DIR/shared" || failed=true
-  done
+  stow_packages_in_root shared
   
   echo ""
   
   # Stow machine-specific packages
   if [[ "$MACHINE_TYPE" == "laptop" ]]; then
-    for pkg in i3 sway hyprland x; do
-      [[ -d "$SCRIPT_DIR/laptop/$pkg" ]] || continue
-      print_info "Stowing: laptop/$pkg"
-      run_stow "$pkg" "$SCRIPT_DIR/laptop" || failed=true
-    done
+    stow_packages_in_root laptop
   else
-    for pkg in i3 hyprland x; do
-      [[ -d "$SCRIPT_DIR/desktop/$pkg" ]] || continue
-      print_info "Stowing: desktop/$pkg"
-      run_stow "$pkg" "$SCRIPT_DIR/desktop" || failed=true
-    done
+    stow_packages_in_root desktop
   fi
-  
-  echo ""
-  
-  # Stow terminal emulator
-  STOW_TERMINAL="${STOW_TERMINAL:-kitty}"
-  [[ -d "$SCRIPT_DIR/terminal-emulators/$STOW_TERMINAL" ]] || { print_error "Terminal not found: $STOW_TERMINAL"; return 1; }
-  print_info "Stowing: terminal-emulators/$STOW_TERMINAL"
-  run_stow "$STOW_TERMINAL" "$SCRIPT_DIR/terminal-emulators" || failed=true
   
   echo ""
   if [[ "$failed" == true ]]; then
