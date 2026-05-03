@@ -14,13 +14,15 @@ include touchpad
 # Read `man 5 sway` for reference.
 
 # border & title
-for_window [title="^.*"] border pixel 1, title_format "<b> %class >> %title </b>"
-default_border pixel 1
+for_window [title="^.*"] border pixel 2, title_format "<b> %class >> %title </b>"
+default_border pixel 2
+
+focus_follows_mouse no
 
 # gaps
-gaps inner 4
+gaps inner 10
 gaps outer 0
-smart_gaps on
+# smart_gaps on
 
 # font
 font pango:monospace 11
@@ -60,8 +62,8 @@ bindsym $Mod+space exec --no-startup-id "rofi -modi drun,window -show"
 # core applications
 bindsym $Mod+Return       exec $term
 bindsym $Mod+c            exec swaync-client -t
-bindsym Mod1+c            exec nwg-clipman
-bindsym Mod1+l            exec nwg-lock
+bindsym $Mod+Shift+d      exec nwg-clipman
+bindsym $Mod+Shift+c      exec nwg-lock
 
 # Exit menu
 bindsym $Mod+x exec $exit
@@ -89,9 +91,13 @@ bindsym XF86MonBrightnessUp exec light -A 5
 bindsym XF86MonBrightnessDown exec light -U 5
 
 # Reload the configuration file
-bindsym $Mod+Shift+c reload
+bindsym $Mod+Shift+r reload
 
 ###########          Workspace Bindings          ###############
+
+bindsym $Mod+Tab          workspace next
+bindsym $Mod+Shift+Tab    workspace prev
+bindsym $Mod+backslash    workspace back_and_forth
 
 # switch to workspace
 bindsym $Mod+1 workspace number 1
@@ -102,6 +108,8 @@ bindsym $Mod+5 workspace number 5
 bindsym $Mod+6 workspace number 6
 bindsym $Mod+7 workspace number 7
 bindsym $Mod+8 workspace number 8
+bindsym $Mod+9 workspace number 9
+bindsym $Mod+0 workspace number 10
 
 # switch to workspace - numpad alternatives
 bindsym $Mod+Mod2+KP_1 workspace number 1
@@ -112,32 +120,37 @@ bindsym $Mod+Mod2+KP_5 workspace number 5
 bindsym $Mod+Mod2+KP_6 workspace number 6
 bindsym $Mod+Mod2+KP_7 workspace number 7
 bindsym $Mod+Mod2+KP_8 workspace number 8
-
-# switch to next or previous workspace
-bindsym $Mod+Mod1+Left workspace prev
-bindsym $Mod+Mod1+Right workspace next
+bindsym $Mod+Mod2+KP_9 workspace number 9
+bindsym $Mod+Mod2+KP_0 workspace number 10
 
 # move focused container to workspace
-bindsym $Mod+Shift+1 move container to workspace number 1; workspace number 1
-bindsym $Mod+Shift+2 move container to workspace number 2; workspace number 2
-bindsym $Mod+Shift+3 move container to workspace number 3; workspace number 3
-bindsym $Mod+Shift+4 move container to workspace number 4; workspace number 4
-bindsym $Mod+Shift+5 move container to workspace number 5; workspace number 5
-bindsym $Mod+Shift+6 move container to workspace number 6; workspace number 6
-bindsym $Mod+Shift+7 move container to workspace number 7; workspace number 7
-bindsym $Mod+Shift+8 move container to workspace number 8; workspace number 8
+bindsym $Mod+Shift+1 move container to workspace number 1;
+bindsym $Mod+Shift+2 move container to workspace number 2;
+bindsym $Mod+Shift+3 move container to workspace number 3;
+bindsym $Mod+Shift+4 move container to workspace number 4;
+bindsym $Mod+Shift+5 move container to workspace number 5;
+bindsym $Mod+Shift+6 move container to workspace number 6;
+bindsym $Mod+Shift+7 move container to workspace number 7;
+bindsym $Mod+Shift+8 move container to workspace number 8;
+bindsym $Mod+Shift+9 move container to workspace number 9;
+bindsym $Mod+Shift+0 move container to workspace number 10;
 
 # move focused container to workspace - numpad alternatives
-bindsym $Mod+Shift+Mod2+KP_End   move container to workspace number 1; workspace number 1
-bindsym $Mod+Shift+Mod2+KP_Down  move container to workspace number 2; workspace number 2
-bindsym $Mod+Shift+Mod2+KP_Next  move container to workspace number 3; workspace number 3
-bindsym $Mod+Shift+Mod2+KP_Left  move container to workspace number 4; workspace number 4
-bindsym $Mod+Shift+Mod2+KP_Begin move container to workspace number 5; workspace number 5
-bindsym $Mod+Shift+Mod2+KP_Right move container to workspace number 6; workspace number 6
-bindsym $Mod+Shift+Mod2+KP_Home  move container to workspace number 7; workspace number 7
-bindsym $Mod+Shift+Mod2+KP_Up    move container to workspace number 8; workspace number 8
+bindsym $Mod+Shift+Mod2+KP_End   move container to workspace number 1;
+bindsym $Mod+Shift+Mod2+KP_Down  move container to workspace number 2;
+bindsym $Mod+Shift+Mod2+KP_Next  move container to workspace number 3;
+bindsym $Mod+Shift+Mod2+KP_Left  move container to workspace number 4;
+bindsym $Mod+Shift+Mod2+KP_Begin move container to workspace number 5;
+bindsym $Mod+Shift+Mod2+KP_Right move container to workspace number 6;
+bindsym $Mod+Shift+Mod2+KP_Home  move container to workspace number 7;
+bindsym $Mod+Shift+Mod2+KP_Up    move container to workspace number 8;
+bindsym $Mod+Shift+Mod2+KP_9    move container to workspace number 9;
+bindsym $Mod+Shift+Mod2+KP_0    move container to workspace number 10;
 
 ############      Container/Window control  ############
+
+for_window [window_role="GtkFileChooserDialog"] resize set 800 600
+for_window [window_role="GtkFileChooserDialog"] move position center
 
 # Scratchpad, Floating
 bindsym $Mod+shift+f floating toggle
@@ -159,12 +172,6 @@ bindsym $Mod+$down  focus down
 bindsym $Mod+$up    focus up
 bindsym $Mod+$right focus right
 
-# alternatively, you can use the cursor keys:
-bindsym $Mod+Left   focus left
-bindsym $Mod+Down   focus down
-bindsym $Mod+Up     focus up
-bindsym $Mod+Right  focus right
-
 # move focus to the parent container
 bindsym $Mod+p      focus parent
 
@@ -174,38 +181,15 @@ bindsym $Mod+Shift+$down  move down
 bindsym $Mod+Shift+$up    move up
 bindsym $Mod+Shift+$right move right
 
-# alternatively, you can use the cursor keys:
-bindsym $Mod+Shift+Up    move up
-bindsym $Mod+Shift+Down  move down
-bindsym $Mod+Shift+Left  move left
-bindsym $Mod+Shift+Right move right
-
-# Resizing containers
-mode "resize" {
-    bindsym $left resize shrink width 10px
-    bindsym $down resize grow height 10px
-    bindsym $up resize shrink height 10px
-    bindsym $right resize grow width 10px
-
-    # Ditto, with arrow keys
-    bindsym Left resize shrink width 10px
-    bindsym Down resize grow height 10px
-    bindsym Up resize shrink height 10px
-    bindsym Right resize grow width 10px
-
-    # Return to default mode
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
-}
-bindsym $Mod+r mode "resize"
-
 # Size
-bindsym Mod1+Up    resize shrink height 10 px or 1 ppt
-bindsym Mod1+Down  resize grow   height 10 px or 1 ppt
-bindsym Mod1+Left  resize shrink width  10 px or 1 ppt
-bindsym Mod1+Right resize grow   width  10 px or 1 ppt
-
-default_orientation horizontal
+bindsym $Mod+Shift+Left  resize shrink width 5 px or 5 ppt
+bindsym $Mod+Ctrl+Left   move workspace to output right
+bindsym $Mod+Shift+Down  resize shrink height 5 px or 5 ppt
+bindsym $Mod+Ctrl+Down   move workspace to output up
+bindsym $Mod+Shift+Up    resize grow height 5 px or 5 ppt
+bindsym $Mod+Ctrl+Up     move workspace to output down
+bindsym $Mod+Shift+Right resize grow width 5 px or 5 ppt
+bindsym $Mod+Ctrl+Right  move workspace to output left
 
 # make the current focus fullscreen
 bindsym $Mod+f fullscreen
@@ -213,22 +197,23 @@ bindsym $Mod+f fullscreen
 ###############      Border & Gaps     ###############
 
 # changing border style
-bindsym $Mod+b border toggle
+# bindsym $Mod+b border toggle
 
 # change gaps
-bindsym $Mod+plus                gaps inner current plus  5
-bindsym $Mod+minus               gaps inner current minus 5
-bindsym Mod1+plus                gaps outer current plus  5
-bindsym Mod1+minus               gaps outer current minus 5
+# bindsym $Mod+plus                gaps inner current plus  5
+# bindsym $Mod+minus               gaps inner current minus 5
+# bindsym Mod1+plus                gaps outer current plus  5
+# bindsym Mod1+minus               gaps outer current minus 5
 
-bindsym $Mod+KP_Add              gaps inner current plus  5
-bindsym $Mod+KP_Subtract         gaps inner current minus 5
-bindsym Mod1+KP_Add              gaps outer current plus  5
-bindsym Mod1+KP_Subtract         gaps outer current minus 5
+# bindsym $Mod+KP_Add              gaps inner current plus  5
+# bindsym $Mod+KP_Subtract         gaps inner current minus 5
+# bindsym Mod1+KP_Add              gaps outer current plus  5
+# bindsym Mod1+KP_Subtract         gaps outer current minus 5
 
 ############    application settings   ############
 
 # focus, floating, & sticky
+for_window [class="zoom"] floating enable
 for_window [app_id="(?i)(?:blueman-manager|azote|gnome-disks)"] floating enable
 for_window [app_id="(?i)(?:pavucontrol|nm-connection-editor|gsimplecal|galculator)"] floating enable
 for_window [title="(?i)(?:copying|deleting|moving)"] floating enable
