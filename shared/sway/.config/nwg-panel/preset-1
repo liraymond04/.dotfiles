@@ -152,7 +152,7 @@
       "show-icon": true,
       "image-size": 16,
       "show-name": true,
-      "name-length": 20,
+      "name-length": 100,
       "mark-autotiling": false,
       "mark-content": false,
       "show-layout": true,
