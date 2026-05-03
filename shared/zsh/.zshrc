@@ -97,7 +97,7 @@ alias battery-info='upower -i $(upower -e | grep BAT) | grep --color=never -E "s
 alias archlinux-fix-keys="sudo pacman-key --init && sudo pacman-key --populate archlinux && sudo pacman-key --refresh-keys"
 # systemd
 alias list_systemctl="systemctl list-unit-files --state=enabled"
-alias xinput-config="~/.dotfiles/i3/.config/i3/scripts/xinput-config.sh"
+alias xinput-config="~/.config/i3/scripts/xinput-config.sh"
 
 # claw code
 alias claw="$HOME/sources/claw-code/rust/target/debug/claw"
