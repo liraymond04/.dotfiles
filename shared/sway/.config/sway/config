@@ -87,8 +87,8 @@ bindsym XF86AudioRaiseVolume exec pactl set-sink-volume 0 +2%
 bindsym XF86AudioLowerVolume exec pactl set-sink-volume 0 -2%
 
 # backlight
-bindsym XF86MonBrightnessUp exec light -A 5
-bindsym XF86MonBrightnessDown exec light -U 5
+bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl s +2%
+bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl s 2%-
 
 # Reload the configuration file
 bindsym $Mod+Shift+r reload
