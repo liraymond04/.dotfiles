@@ -33,7 +33,8 @@
       "components": [
         "brightness",
         "battery",
-        "volume"
+        "volume",
+        "per-app-volume"
       ],
       "commands": {
         "battery": "",
@@ -96,13 +97,20 @@
       "output-switcher": true,
       "window-width": 320,
       "window-margin": 6,
-      "battery-low-level": 0,
+      "battery-low-level": 20,
       "backlight-device": "",
       "backlight-controller": "brightnessctl",
       "root-css-name": "controls-overview",
       "window-margin-horizontal": 4,
       "window-margin-vertical": 4,
-      "angle": 0.0
+      "angle": 0.0,
+      "show-brightness": true,
+      "show-volume": true,
+      "show-battery": true,
+      "per-app-volume": false,
+      "battery-low-interval": 3,
+      "processes-label": "Processes",
+      "readme-label": "README"
     },
     "playerctl": {},
     "clock": {
@@ -114,7 +122,18 @@
       "on-middle-click": "",
       "on-scroll-up": "",
       "on-scroll-down": "",
-      "css-name": "clock"
+      "css-name": "clock",
+      "tooltip-date-format": false,
+      "root-css-name": "root-clock",
+      "angle": 0.0,
+      "calendar-path": "",
+      "calendar-css-name": "calendar-window",
+      "calendar-placement": "top-right",
+      "calendar-margin-horizontal": 0,
+      "calendar-margin-vertical": 0,
+      "calendar-icon-size": 24,
+      "calendar-interval": 60,
+      "calendar-on": true
     },
     "width": "auto",
     "sway-workspaces": {
