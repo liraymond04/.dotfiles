@@ -53,7 +53,7 @@ set $laptop eDP-1
 bindswitch lid:on output $laptop disable
 bindswitch lid:off output $laptop enable
 
-exec --no-startup-id export QT_QPA_PLATFORMTHEME=qt6ct
+exec --no-startup-id /usr/lib/xdg-desktop-portal -r
 
 #############         Bindings           ##################
 
