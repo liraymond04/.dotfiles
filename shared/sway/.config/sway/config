@@ -45,11 +45,15 @@ exec hash dbus-update-activation-environment 2>/dev/null && \
     dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
 exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec ~/.azotebg
+exec blueman-applet
+exec fcitx5 -d
 
 ### Turn off screen on lid closed (laptop-specific, no-op on desktop)
 set $laptop eDP-1
 bindswitch lid:on output $laptop disable
 bindswitch lid:off output $laptop enable
+
+exec --no-startup-id export QT_QPA_PLATFORMTHEME=qt6ct
 
 #############         Bindings           ##################
 

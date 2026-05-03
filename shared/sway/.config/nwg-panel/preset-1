@@ -18,15 +18,14 @@
     "modules-left": [
       "sway-workspaces"
     ],
-    "modules-center": [
-      "clock"
-    ],
+    "modules-center": [],
     "modules-right": [
       "executor-cpuav",
       "executor-mem",
       "sway-mode",
       "scratchpad",
-      "tray"
+      "tray",
+      "clock"
     ],
     "sway-taskbar": {},
     "controls-settings": {
@@ -107,7 +106,7 @@
     },
     "playerctl": {},
     "clock": {
-      "format": "%a, %d. %b  %H:%M:%S",
+      "format": "%a %b %d %H:%M:%S",
       "interval": 1,
       "on-right-click": "",
       "tooltip-text": "",
@@ -158,12 +157,12 @@
       "on-scroll-down": "",
       "root-css-name": "",
       "css-name": "",
-      "icon-placement": "right",
+      "icon-placement": "left",
       "icon-size": 16,
       "interval": 3
     },
     "executor-mem": {
-      "script": "gopsuinfo -i m",
+      "script": "bash -c exec${IFS}${XDG_CONFIG_HOME:-$HOME/.config}/nwg-panel/executors/mem_percent.sh",
       "on-left-click": "nwg-processes",
       "on-middle-click": "",
       "on-right-click": "",
@@ -171,7 +170,7 @@
       "on-scroll-down": "",
       "root-css-name": "",
       "css-name": "",
-      "icon-placement": "right",
+      "icon-placement": "left",
       "icon-size": 16,
       "interval": 3
     },
