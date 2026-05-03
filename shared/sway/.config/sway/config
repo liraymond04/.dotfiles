@@ -76,10 +76,8 @@ bindsym $Mod+x exec $exit
 bindsym $Mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'
 
 # screenshot
-bindsym Print exec screenshot fullscreen
-bindsym Control+Print exec screenshot display
-bindsym Shift+Control+Print exec screenshot swappy
-bindsym $Mod+Shift+Control+Print exec screenshot focused
+bindsym $Mod+y            exec --no-startup-id flameshot gui
+bindsym $Mod+Shift+y      exec --no-startup-id flameshot full -p ~/Pictures/screenshots
 
 # audio
 bindsym XF86AudioPlay exec playerctl play-pause
