@@ -174,9 +174,45 @@ menu > *, menu > * {
     padding: 3px 0px;
 }
 
-menu > *:hover, menu > *:hover{
+/* Target all menu items, including those in submenus */
+menuitem {
+    color: @fg;
+}
+
+/* This handles keyboard navigation and mouse hover */
+/* 1. Define the Row State (Hover & Focus) */
+menuitem:hover, 
+menuitem:focus {
+    background-color: @blue;
+    color: @module-bg;
     border-radius: 10px;
-    background-color: @inactive;
+}
+
+/* 2. Base styling for Check/Radio icons */
+menuitem check, 
+menuitem radio {
+    min-height: 16px;
+    min-width: 16px;
+    margin: 0 4px; /* Balanced margins for alignment */
+    border-radius: 3px;
+    /* This makes the icon match the text color of the menuitem automatically */
+    color: @blue; 
+}
+
+/* 3. The "Consistency" Rule */
+/* When the parent is hovered or focused, force the icon to match the new text color */
+menuitem:hover check,
+menuitem:focus check,
+menuitem:hover radio,
+menuitem:focus radio {
+    color: inherit; 
+}
+
+/* 4. Active/Connected State */
+/* This ensures that even when NOT hovered, the connected VPN stands out */
+menuitem check:checked,
+menuitem radio:checked {
+    color: @blue; /* Or @green if you want a 'connected' specific look */
 }
 
 /* Sliders */
