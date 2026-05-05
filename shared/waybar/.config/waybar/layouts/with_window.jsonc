@@ -1,0 +1,37 @@
+{
+    "layer": "top",
+    "position": "top",
+    "width": "100%",
+    "height": 25,
+    "margin": "5 5 0 5",
+
+    "group/left" : {
+        "orientation": "horizontal",
+        "modules" : [
+            "sway/workspaces", "sway/window"
+        ]
+    },
+
+    "group/left-hidden-top" : {
+        "orientation": "horizontal",
+        "modules" : [ "custom/start", "cpu", "memory" ]
+    },
+
+    "group/right" : {
+        "orientation": "horizontal",
+        "modules" : [
+            "group/group-volume", "group/group-backlight", "tray"
+        ]
+    },
+
+    "group/right-hidden-top" : {
+        "orientation": "horizontal",
+        "modules" : [ "battery", "temperature",  "custom/ctlcenter" ]
+    },
+
+    "modules-left"   : ["group/left-hidden-top", "group/left"],
+    "modules-center" : [],
+    "modules-right"  : [ "group/right", "clock", "group/right-hidden-top"],
+
+    "include": [ "~/.config/waybar/modules.jsonc" ]
+}

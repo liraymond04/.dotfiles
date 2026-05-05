@@ -13,6 +13,10 @@ include touchpad
 # nwg-shell sway config
 # Read `man 5 sway` for reference.
 
+bar {
+    swaybar_command waybar
+}
+
 # border & title
 for_window [title="^.*"] border pixel 2, title_format "<b> %class >> %title </b>"
 default_border pixel 2
@@ -44,9 +48,12 @@ exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK
 exec hash dbus-update-activation-environment 2>/dev/null && \
     dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
 exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
-exec ~/.azotebg
+# exec ~/.azotebg
 exec blueman-applet
 exec fcitx5 -d
+
+# Wallpaper
+exec_always swaybg -o 'eDP-1' -i "$HOME/.config/sway/wallpaper/edskeye-3.jpg" -m fill &
 
 ### Turn off screen on lid closed (laptop-specific, no-op on desktop)
 set $laptop eDP-1
@@ -67,7 +74,7 @@ bindsym $Mod+space exec --no-startup-id "rofi -modi drun,window -show"
 bindsym $Mod+Return       exec $term
 bindsym $Mod+c            exec swaync-client -t
 bindsym $Mod+Shift+d      exec nwg-clipman
-bindsym $Mod+Shift+c      exec nwg-lock
+bindsym $Mod+Shift+c      exec ~/.lock.sh
 
 # Exit menu
 bindsym $Mod+x exec $exit
