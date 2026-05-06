@@ -30,13 +30,16 @@
   "widget-config": {
     "backlight": {
       "device": "amdgpu_bl1",
-      "label": "\udb80\udce0",
+      "label": "󰃠",
       "slider": true,
       "min": 10
     },
     "volume": {
       "device": "default",
-      "label": "\udb81\udd80",
+      "show-per-app": true,
+      "expand-per-app": true,
+      "show-per-app-label": false,
+      "label": "󰖀",
       "slider": true
     },
     "dnd": {

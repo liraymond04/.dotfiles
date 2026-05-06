@@ -1,7 +1,7 @@
 @import "colors/colors.css";
 
 * {
-	font-family: "CaskaydiaCove Nerd Font Propo";
+	font-family: "Hack Nerd Font";
 	font-weight: 700;
 	all: unset;
 
@@ -274,7 +274,7 @@
 }
 
 .widget-buttons-grid button > label {
-	font-family: "CaskaydiaCove Nerd Font Propo";
+	font-family: "Hack Nerd Font";
 	font-size: 16px;
 	color: @text;
 }
@@ -299,12 +299,40 @@
 	color: @text;
 	font-weight: 800;
 	background: @background-alt;
+	/* outline: blue solid 1px; */
 }
 
-.widget-volume label,
+.widget-volume label {
+	font-size: 1.5rem;
+	margin-left: 6px;
+	min-width: 30px;
+	/* outline: red solid 1px; */
+}
+
 .widget-backlight label {
 	font-size: 1.1rem;
+	min-width: 36px;
 }
+
+.per-app-volume {
+	margin-top: 8px;
+	/* outline: red solid 1px; */
+}
+
+.per-app-volume row {
+	margin: 4px 0;
+	/* outline: red solid 1px; */
+}
+
+.per-app-volume row box image {
+	margin-left: 6px;
+	padding: 4px 7px;
+	/* outline: red solid 1px; */
+}
+
+/* .per-app-volume * { */
+/* 	outline: red solid 1px; */
+/* } */
 
 .widget-volume slider,
 .widget-backlight slider {
@@ -315,10 +343,23 @@
 	opacity: 1;
 }
 
-.widget-volume trough,
+.widget-volume trough {
+	background: @hover;
+	margin-left: 16px;
+	margin-right: 16px;
+	border-radius: 12px;  
+	/* outline: red solid 1px; */
+}
+
+.per-app-volume trough {
+	margin-right: 32px;
+	/* outline: red solid 1px; */
+}
+
 .widget-backlight trough {
 	background: @hover;
-	margin-left: 8px;
+	margin-left: 16px;
+	margin-right: 32px;
 	border-radius: 12px;  
 }
 
