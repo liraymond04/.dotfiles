@@ -3,8 +3,11 @@ return {
     "lambdalisue/vim-suda",
   },
   {
+    "nvim-lua/plenary.nvim",
+  },
+  {
     "kylechui/nvim-surround",
-    version = "^3.0.0", -- Use for stability; omit to use `main` branch for the latest features
+    version = "^4.0.0", -- Use for stability; omit to use `main` branch for the latest features
     event = "VeryLazy",
     config = function()
       require("nvim-surround").setup({
@@ -26,46 +29,46 @@ return {
       npairs.add_rules({
         -- Rule for a pair with left-side ' ' and right side ' '
         Rule(" ", " ")
-          -- Pair will only occur if the conditional function returns true
-          :with_pair(function(opts)
-            -- We are checking if we are inserting a space in (), [], or {}
-            local pair = opts.line:sub(opts.col - 1, opts.col)
-            return vim.tbl_contains({
-              brackets[1][1] .. brackets[1][2],
-              brackets[2][1] .. brackets[2][2],
-              brackets[3][1] .. brackets[3][2],
-            }, pair)
-          end)
-          :with_move(cond.none())
-          :with_cr(cond.none())
-          -- We only want to delete the pair of spaces when the cursor is as such: ( | )
-          :with_del(
-            function(opts)
-              local col = vim.api.nvim_win_get_cursor(0)[2]
-              local context = opts.line:sub(col - 1, col + 2)
+        -- Pair will only occur if the conditional function returns true
+            :with_pair(function(opts)
+              -- We are checking if we are inserting a space in (), [], or {}
+              local pair = opts.line:sub(opts.col - 1, opts.col)
               return vim.tbl_contains({
-                brackets[1][1] .. "  " .. brackets[1][2],
-                brackets[2][1] .. "  " .. brackets[2][2],
-                brackets[3][1] .. "  " .. brackets[3][2],
-              }, context)
-            end
-          ),
+                brackets[1][1] .. brackets[1][2],
+                brackets[2][1] .. brackets[2][2],
+                brackets[3][1] .. brackets[3][2],
+              }, pair)
+            end)
+            :with_move(cond.none())
+            :with_cr(cond.none())
+        -- We only want to delete the pair of spaces when the cursor is as such: ( | )
+            :with_del(
+              function(opts)
+                local col = vim.api.nvim_win_get_cursor(0)[2]
+                local context = opts.line:sub(col - 1, col + 2)
+                return vim.tbl_contains({
+                  brackets[1][1] .. "  " .. brackets[1][2],
+                  brackets[2][1] .. "  " .. brackets[2][2],
+                  brackets[3][1] .. "  " .. brackets[3][2],
+                }, context)
+              end
+            ),
       })
       -- For each pair of brackets we will add another rule
       for _, bracket in pairs(brackets) do
         npairs.add_rules({
           -- Each of these rules is for a pair with left-side '( ' and right-side ' )' for each bracket type
           Rule(bracket[1] .. " ", " " .. bracket[2])
-            :with_pair(cond.none())
-            :with_move(function(opts)
-              return opts.char == bracket[2]
-            end)
-            :with_del(cond.none())
-            :use_key(bracket[2])
-            -- Removes the trailing whitespace that can occur without this
-            :replace_map_cr(function(_)
-              return "<C-c>2xi<CR><C-c>O"
-            end),
+              :with_pair(cond.none())
+              :with_move(function(opts)
+                return opts.char == bracket[2]
+              end)
+              :with_del(cond.none())
+              :use_key(bracket[2])
+          -- Removes the trailing whitespace that can occur without this
+              :replace_map_cr(function(_)
+                return "<C-c>2xi<CR><C-c>O"
+              end),
         })
       end
     end,
@@ -164,13 +167,13 @@ return {
     build = "deno task --quiet build:fast",
     config = function()
       require("peek").setup({
-        auto_load = true, -- whether to automatically load preview when
+        auto_load = true,        -- whether to automatically load preview when
         -- entering another markdown buffer
         close_on_bdelete = true, -- close preview window on buffer delete
 
-        syntax = true, -- enable syntax highlighting, affects performance
+        syntax = true,           -- enable syntax highlighting, affects performance
 
-        theme = "dark", -- 'dark' or 'light'
+        theme = "dark",          -- 'dark' or 'light'
 
         update_on_change = true,
 
@@ -181,7 +184,7 @@ return {
         filetype = { "markdown" }, -- list of filetypes to recognize as markdown
 
         -- relevant if update_on_change is true
-        throttle_at = 200000, -- start throttling when file exceeds this
+        throttle_at = 200000,   -- start throttling when file exceeds this
         -- amount of bytes in size
         throttle_time = "auto", -- minimum amount of time in milliseconds
         -- that has to pass before starting new render
@@ -329,51 +332,5 @@ return {
         row = 6,
       },
     },
-  },
-  {
-    "nyngwang/NeoZoom.lua",
-    config = function()
-      require("neo-zoom").setup({
-        popup = { enabled = true }, -- this is the default.
-        -- NOTE: Add popup-effect (replace the window on-zoom with a `[No Name]`).
-        -- EXPLAIN: This improves the performance, and you won't see two
-        --          identical buffers got updated at the same time.
-        -- popup = {
-        --   enabled = true,
-        --   exclude_filetypes = {},
-        --   exclude_buftypes = {},
-        -- },
-        exclude_buftypes = { "terminal" },
-        -- exclude_filetypes = { 'lspinfo', 'mason', 'lazy', 'fzf', 'qf' },
-        winopts = {
-          offset = {
-            -- NOTE: omit `top`/`left` to center the floating window vertically/horizontally.
-            -- top = 0,
-            -- left = 0.17,
-            width = 150,
-            height = 0.85,
-          },
-          -- NOTE: check :help nvim_open_win() for possible border values.
-          border = "thicc", -- this is a preset, try it :)
-        },
-        presets = {
-          {
-            -- NOTE: regex pattern can be used here!
-            filetypes = { "dapui_.*", "dap-repl" },
-            winopts = {
-              offset = { top = 0.02, left = 0.26, width = 0.74, height = 0.25 },
-            },
-          },
-          {
-            filetypes = { "markdown" },
-            callbacks = {
-              function()
-                vim.wo.wrap = true
-              end,
-            },
-          },
-        },
-      })
-    end,
   },
 }

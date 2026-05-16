@@ -5,6 +5,16 @@ return {
     "tpope/vim-sleuth",
   },
   {
+    "code-biscuits/nvim-biscuits",
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter",
+    },
+    opts = {
+      -- Config goes here
+    },
+  },
+  { "sitiom/nvim-numbertoggle" },
+  {
     "lewis6991/gitsigns.nvim",
     opts = {
       signs = {
@@ -15,8 +25,8 @@ return {
         changedelete = { text = "▎" },
       },
       signcolumn = true, -- Toggle with `:Gitsigns toggle_signs`
-      numhl = false, -- Toggle with `:Gitsigns toggle_numhl`
-      linehl = false, -- Toggle with `:Gitsigns toggle_linehl`
+      numhl = false,     -- Toggle with `:Gitsigns toggle_numhl`
+      linehl = false,    -- Toggle with `:Gitsigns toggle_linehl`
       word_diff = false, -- Toggle with `:Gitsigns toggle_word_diff`
       watch_gitdir = {
         interval = 1000,
@@ -45,12 +55,6 @@ return {
     },
   },
   {
-    "nvimdev/indentmini.nvim",
-    opts = {
-      char = "▏",
-    },
-  },
-  {
     "catgoose/nvim-colorizer.lua",
     event = "BufReadPre",
     opts = { -- set to setup table
@@ -59,6 +63,15 @@ return {
         mode = "foreground",
         virtualtext_inline = true,
       },
+    },
+  },
+  {
+    "folke/todo-comments.nvim",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    opts = {
+      -- your configuration comes here
+      -- or leave it empty to use the default settings
+      -- refer to the configuration section below
     },
   },
   {
