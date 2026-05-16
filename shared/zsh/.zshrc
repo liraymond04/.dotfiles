@@ -83,6 +83,32 @@ zstyle ':completion:*' menu no
 zstyle ':fzf-tab:complete💿*' fzf-preview 'ls --color $realpath'
 zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 
+# FZF
+export FZF_DEFAULT_COMMAND='fd
+  --type f
+  --hidden
+  --strip-cwd-prefix
+  --exclude .git
+'  # strip-cwd-prefix removes the leading ./ from results
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+
+export FZF_DEFAULT_OPTS='
+  --height=60%
+  --layout=reverse
+  --border=rounded
+  --prompt="| "
+  --pointer="> "
+  --preview-window=right:65%:wrap:border-left
+  --bind="ctrl-u:preview-half-page-up,ctrl-d:preview-half-page-down"
+  --bind="ctrl-/:toggle-preview"
+  --bind="ctrl-r:execute(vim {})"
+  --bind="ctrl-g:clear-query"
+  --color="bg:-1,fg:-1,bg+:-1,fg+:4,hl:5,hl+:5,header:-1,pointer:4,prompt:2,spinner:3,info:6,marker:2,gutter:240"
+'
+
+export _FZF_PREVIEW_CMD='~/fzf-preview.sh {}'
+export FZF_CTRL_T_OPTS="--preview '$_FZF_PREVIEW_CMD'"
+
 # Aliases
 alias ls='ls --color=auto'
 # Colorize grep output (good for log files)
