@@ -119,7 +119,7 @@
     },
     "clock": {
         "interval": 1,
-        // "timezone": "America/Vancouver",
+        "timezone": "America/Phoenix",
         "tooltip-format": "<tt><small>{calendar}</small></tt>",
         // "format": "{:%H:%M:%S %d %B %Y}",
         "format": "{:%Y %B %d %H:%M:%S}",
@@ -168,7 +168,7 @@
     },
     "custom/ctlcenter": {
         "tooltip": false,
-        "format": "",
+        "format": " ",
         "on-click": "swaync-client -t",
         "menu": "on-click-right",
         "menu-file": "~/.config/waybar/context/ctlcenter.xml",

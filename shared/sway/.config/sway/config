@@ -55,12 +55,18 @@ exec fcitx5 -d
 # Wallpaper
 exec_always swaybg -o 'eDP-1' -i "$HOME/.config/sway/wallpaper/edskeye-3.jpg" -m fill &
 
+# disable kde apps
+exec_always pkill kded6
+exec_always pkill plasmashell
+exec_always pkill kglobalaccel6
+
 ### Turn off screen on lid closed (laptop-specific, no-op on desktop)
 set $laptop eDP-1
 bindswitch lid:on output $laptop disable
 bindswitch lid:off output $laptop enable
 
 exec --no-startup-id /usr/lib/xdg-desktop-portal -r
+# exec --no-startup-id /usr/local/libexec/xdg-desktop-portal-wlr -r
 
 #############         Bindings           ##################
 
@@ -226,5 +232,6 @@ for_window [class="zoom"] floating enable
 for_window [app_id="(?i)(?:blueman-manager|azote|gnome-disks)"] floating enable
 for_window [app_id="(?i)(?:pavucontrol|nm-connection-editor|gsimplecal|galculator)"] floating enable
 for_window [title="(?i)(?:copying|deleting|moving)"] floating enable
+for_window [title="Select what to share"] floating enable
 
 popup_during_fullscreen smart
